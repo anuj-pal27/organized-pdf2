@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organize PDFs in Seconds – Simplify, Arrange, and Save Time with WriteCream AI!</title>
+    <meta name="keywords" content="organize pdf, PDF Organizer, Online PDF Organizer, Free PDF Organizer, PDF File Organizer, How to Organize PDF Files">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="page-wrapper">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <header class="hero-section">
+                <h1><span style="color: var(--primary);">Simplify Your Workflow with WriteCream AI's Organize PDF Tool</span></h1>
+                <p class="hero-subtitle">At the core of WriteCream AI's offerings is the Organize PDF tool, a user-friendly and highly efficient platform that transforms the way you interact with PDF documents. Whether you're a business professional, educator, student, or creative, this tool is designed to make your life easier. Here's how it works in three simple steps:</p>
+            </header>
+            <div id="pdf-upload" class="upload-container">
+                <div class="upload-area" id="dropZone">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <input type="file" id="pdfInput" accept=".pdf" class="file-input" multiple style="display: none;">
+                        <label for="pdfInput" class="choose-files-btn">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Choose PDF Files
+                        </label>
+                        <p class="drop-text">or drag and drop your PDFs here</p>
+                    </div>
+                    <div class="upload-decoration">
+                        <div class="decoration-circle"></div>
+                        <div class="decoration-line"></div>
+                    </div>
+                </div>
+
+                <div class="pdf-controls" style="display: none;">
+                    <div class="split-controls">
+                        <h3>PDF Organization</h3>
+                        <div class="pdf-workspace">
+                            <div class="pdf-toolbar">
+                                <button class="tool-btn" id="addPdfBtn">
+                                    <i class="fas fa-plus"></i> Add PDF
+                                </button>
+                                
+                            </div>
+                            <div class="pdf-container">
+                                <div class="pdf-list" id="pdfList">
+                                    <!-- PDFs will be added here dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                        <button class="tool-btn" id="saveChangesBtn">
+                            <i class="fas fa-save"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="section-header">
+                    <h2>Key Features That Make WriteCream AI's Organize PDF Tool Stand Out</h2>
+                    <p>WriteCream AI's Organize PDF tool is packed with features designed to meet the diverse needs of modern professionals and creatives. Here's what sets it apart:</p>
+                </div>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Multiple Organization Methods</h3>
+                            <p>Organize your PDFs by page ranges, file size, or even/odd pages. The tool provides flexible options to arrange your documents exactly how you want them.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-align-left"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Preserves Original Formatting</h3>
+                            <p>Worried about losing your document's structure? The PDF organizer ensures that fonts, layouts, and formatting remain intact, delivering a professional-looking document every time.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>User-Friendly Interface</h3>
+                            <p>Designed with simplicity in mind, the tool is easy to use for individuals of all skill levels. No technical expertise is required to organize PDF files quickly and efficiently.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-sort"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Customizable File Arrangement</h3>
+                            <p>Need to rearrange pages or individual PDFs? The tool allows you to organize your files exactly how you want them, creating a perfectly structured document.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-highlighter"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>High-Quality Output</h3>
+                            <p>The online PDF organizer generates high-resolution PDFs that are print-ready, ensuring no loss of quality during the organization process.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Top-Notch Security</h3>
+                            <p>Your data's security is a top priority. The tool uses secure file processing and even allows you to password-protect your organized PDFs, keeping sensitive information safe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="how-to-convert">
+                <div class="section-header">
+                    <h2>Upload Your Files</h2>
+                    <p>Select the PDF files you want to organize. The tool supports a wide range of file types, including contracts, invoices, research papers, eBooks, and more. Whether you're working with two files or twenty, the PDF organizer ensures seamless processing.</p>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h3>Organize Instantly</h3>
+                        <p>Once your files are uploaded, choose your preferred organization method and click the "Organize" button. Within seconds, the tool will organize your PDFs according to your specifications. The online PDF organizer preserves the original formatting, fonts, and layout, ensuring a polished and professional result every time.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Review and Download</h3>
+                        <p>After organizing, review the final document to ensure everything is in order. Make any last-minute adjustments if needed, then download your organized PDF in high resolution. The free PDF organizer guarantees top-quality output, ready for printing or sharing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-section">
+                <div class="section-header">
+                    <h2>Why the Organize PDF Tool is Essential</h2>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>For Business Professionals</h3>
+                            <p>Save time by organizing contracts, financial reports, and other vital documents into smaller, more manageable PDFs, and present organized, professional documents to clients and colleagues.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>For Educators and Students</h3>
+                            <p>Easily bring together lecture notes, research documents, and reference materials into a single PDF for easier studying and teaching.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>For Creators and Designers</h3>
+                            <p>Combine portfolios, presentations, or design mockups into sleek, comprehensive files to showcase your work effectively.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>For Legal and Administrative Teams</h3>
+                            <p>Make managing case files, agreements, and other legal documents simpler with quick and secure PDF organizing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="faq">
+                    <div class="faq-item">
+                        <h3>Is WriteCream AI's Organize PDF really free to use?
+                            <button class="toggle-btn">+</button>
+                        </h3>
+                        <p class="faq-answer">Yes! WriteCream AI's Organize PDF is 100% free with no hidden costs or subscriptions. You can organize unlimited PDFs without needing to create an account.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I organize multiple PDFs into separate documents?
+                            <button class="toggle-btn">+</button>
+                        </h3>
+                        <p class="faq-answer">Absolutely! You can organize multiple PDFs into separate documents based on your chosen method (page ranges, file size, or even/odd pages).</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Will my organized PDF be of high quality?
+                            <button class="toggle-btn">+</button>
+                        </h3>
+                        <p class="faq-answer">Yes! The tool maintains the original quality and formatting of your PDFs, ensuring no loss in resolution or structure.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Is my uploaded PDF file safe and secure?
+                            <button class="toggle-btn">+</button>
+                        </h3>
+                        <p class="faq-answer">Yes! We use end-to-end encryption for data security, and all uploaded files are automatically deleted from our servers after processing.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I use the Organize PDF tool on mobile devices?
+                            <button class="toggle-btn">+</button>
+                        </h3>
+                        <p class="faq-answer">Yes! The tool is fully responsive and works seamlessly on all devices, including smartphones and tablets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal" id="previewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Split Preview</h3>
+                <button class="close-btn" id="closePreview">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-list">
+                    <!-- Preview items will be added here dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" id="cancelSplit">Cancel</button>
+                <button class="confirm-btn" id="confirmSplit">Confirm Split</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load PDF.js first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+    <!-- Then load PDF-lib -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- Initialize PDF.js worker -->
+    <script>
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <!-- Finally load your script -->
+    <script src="script.js"></script>
+
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <img src="./images/istockphoto-153959462-1024x1024.jpg" alt="First Image" class="footer-image">
+                <div>
+                    <h2>Unlock Greater Efficiency and Organization with Organize PDF</h2>
+                    <p>WriteCream AI's Organize PDF tool is more than just a utility—it's a game-changer for productivity and document management. By simplifying the process of organizing PDFs, it empowers you to focus on what truly matters: delivering your best work. Whether you're a busy professional, a student, or a creative, this tool helps you stay organized, save time, and maintain control over your documents.</p>
+                    <p onclick="document.getElementById('pdf-upload').scrollIntoView({ behavior: 'smooth' });">
+                        Discover the future of document control with WriteCream AI's Organize PDF tool today. Let it handle the details, so you can focus on what matters most: achieving your goals with confidence and ease.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add this inside your HTML where appropriate -->
+    <div id="pageInfo"></div>
+</body>
+</html>
