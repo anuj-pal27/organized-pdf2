@@ -186,13 +186,35 @@ function createThumbnailElement(canvas, pageNumber) {
         wrapper.remove();
         updatePageNumbers();
     })
+    //flip button functionality 
+
+const flipButton = document.createElement('button');
+    flipButton.innerHTML = '<i class="fas fa-arrows-alt-h"></i>'; // Font Awesome flip icon
+    flipButton.className = 'flip-button';
+    flipButton.title = 'Flip page horizontally';
+
+// Store flip state
+wrapper.dataset.flip = 'none';
+
+flipButton.addEventListener('click', () => {
+    const currentFlip = wrapper.dataset.flip;
+    if (currentFlip === 'none') {
+        wrapper.dataset.flip = 'horizontal';
+        flipButton.classList.add('flipped');
+        pageCanvas.style.transform = `scaleX(-1)`; 
+    } else {
+        wrapper.dataset.flip = 'none';
+        flipButton.classList.remove('flipped');
+        pageCanvas.style.transform = ''; 
+    }
+});
 
     // Controls wrapper
     const controls = document.createElement('div');
     controls.className = 'thumbnail-controls';
     controls.appendChild(rotateButton);
     controls.appendChild(deleteButton);
-
+    controls.appendChild(flipButton);
     wrapper.appendChild(pageCanvas);
     wrapper.appendChild(pageNumberDiv);
     wrapper.appendChild(controls);
@@ -452,10 +474,35 @@ async function saveReorganizedPDF() {
         for (const thumb of thumbnails) {
             const pageNum = parseInt(thumb.dataset.originalPageNumber); // 1-based
             const rotation = parseInt(thumb.dataset.rotation || '0'); // default 0
+            const flip = thumb.dataset.flip === 'horizontal';
 
             if (isNaN(pageNum)) continue;
 
             const [copiedPage] = await newPdf.copyPages(sourcePdf, [pageNum - 1]);
+
+  // Apply horizontal flip if needed
+  if (flip) {
+    const { width, height } = copiedPage.getSize();
+
+    // Create a new page with same dimensions
+    const flippedPage = newPdf.addPage([width, height]);
+
+    // Embed the original page content as an XObject
+    const embeddedPage = await newPdf.embedPage(copiedPage);
+
+    // Draw the flipped content on the new page
+    flippedPage.drawPage(embeddedPage, {
+        x: width,
+        y: 0,
+        xScale: -1,
+        yScale: 1,
+    });
+
+    // Apply rotation after flip
+    flippedPage.setRotation(PDFLib.degrees(rotation));
+
+    continue; // already added flippedPage
+}
             
             // Apply rotation
             copiedPage.setRotation(PDFLib.degrees(rotation));

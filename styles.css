@@ -1940,3 +1940,11 @@ canvas {
         border: 1px solid #000;
     }
 }
+.flip-button {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+}
