@@ -253,20 +253,26 @@ function setupDragAndDrop(container) {
 
         container.addEventListener('touchmove', (e) => {
             if (draggedElement) {
-                e.preventDefault(); // Prevent scrolling while dragging
+                e.preventDefault();
+        
                 currentX = e.touches[0].clientX - initialX;
                 currentY = e.touches[0].clientY - initialY;
-                
+        
                 xOffset = currentX;
                 yOffset = currentY;
-                
+        
                 setTranslate(currentX, currentY, draggedElement);
-                
-                // Find the element under the touch point
+        
+                // Temporarily hide the dragged element to detect correct drop target
+                draggedElement.style.visibility = 'hidden';
                 const touch = e.touches[0];
                 const elementUnderPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+                draggedElement.style.visibility = 'visible';
+        
                 const targetThumbnail = elementUnderPoint?.closest('.page-thumbnail');
-                
+                container.querySelectorAll('.page-thumbnail').forEach(thumb => {
+                    thumb.classList.remove('drag-over');
+                });
                 if (targetThumbnail && targetThumbnail !== draggedElement) {
                     targetThumbnail.classList.add('drag-over');
                 }
@@ -276,38 +282,54 @@ function setupDragAndDrop(container) {
         container.addEventListener('touchend', (e) => {
             if (draggedElement) {
                 const target = e.changedTouches[0];
+        
+                // Temporarily hide to find target
+                draggedElement.style.visibility = 'hidden';
                 const elementUnderPoint = document.elementFromPoint(target.clientX, target.clientY);
+                draggedElement.style.visibility = 'visible';
+        
                 const targetThumbnail = elementUnderPoint?.closest('.page-thumbnail');
-                
+        
                 if (targetThumbnail && targetThumbnail !== draggedElement) {
                     const parent = container;
                     const draggedIndex = [...parent.children].indexOf(draggedElement);
                     const targetIndex = [...parent.children].indexOf(targetThumbnail);
-                    
+                
                     if (draggedIndex < targetIndex) {
-                        parent.insertBefore(draggedElement, targetThumbnail.nextSibling);
+                        parent.insertBefore(draggedElement, targetThumbnail.nextSibling || null);
                     } else {
                         parent.insertBefore(draggedElement, targetThumbnail);
                     }
-                    
-                    // Update page numbers after moving
+                
                     updatePageNumbers();
-                    
-                    // Trigger auto-save
-                    triggerAutoSave();
+                  
                 }
                 
-                // Reset styles and position
+                // 🧼 Clean up styles to prevent "floating"
+                draggedElement.style.transform = 'none';
+                draggedElement.style.transition = 'none';
+                draggedElement.style.zIndex = '';
+                draggedElement.style.position = '';
+                draggedElement.style.left = '';
+                draggedElement.style.top = '';
                 draggedElement.classList.remove('dragging');
-                setTranslate(0, 0, draggedElement);
                 draggedElement = null;
-                
-                // Remove drag-over class from all thumbnails
+        
                 container.querySelectorAll('.page-thumbnail').forEach(thumb => {
                     thumb.classList.remove('drag-over');
                 });
             }
         });
+        
+
+        container.addEventListener('touchcancel', () => {
+            if (draggedElement) {
+                setTranslate(0, 0, draggedElement);
+                draggedElement.classList.remove('dragging');
+                draggedElement = null;
+            }
+        });
+        
 
     container.addEventListener('dragstart', (e) => {
         if (e.target.classList.contains('page-thumbnail')) {
@@ -368,8 +390,13 @@ function setupDragAndDrop(container) {
 
 // Helper function to set transform
 function setTranslate(xPos, yPos, el) {
+    el.style.position = 'absolute';
+    el.style.zIndex = 999;
+    el.style.left = '0px'; // Optional: force base left alignment
+    el.style.top = '0px';  // Optional: force base top alignment
     el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
 }
+
 
 // Update page numbers after reordering
 function updatePageNumbers() {

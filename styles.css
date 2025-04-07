@@ -1896,6 +1896,8 @@ canvas {
         transform: scale(0.95);
         opacity: 0.8;
         z-index: 1000;
+        position: absolute; /* Add this */
+        pointer-events: none; /* Optional: avoid touch clash */
     }
     
     .page-thumbnail.drag-over {
@@ -1947,4 +1949,7 @@ canvas {
     font-size: 16px;
     cursor: pointer;
     padding: 4px;
+}
+.page-thumbnail {
+    transition: transform 0.2s ease-out, top 0.2s, left 0.2s;
 }
